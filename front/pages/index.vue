@@ -1,11 +1,17 @@
 <template>
-  <v-container
-  >
-  
-    <v-tabs v-model="activeTab">
+  <v-container>
+    <v-progress-circular
+      v-if="loading"
+      indeterminate
+      color="primary"
+      class="d-flex justify-center my-5"
+    ></v-progress-circular>
+
+    <v-tabs v-else v-model="activeTab" mandatory eager>
       <v-tab v-for="tab in tabs" :key="tab.id" :value="tab.id">{{ tab.label }}</v-tab>
     </v-tabs>
-    <v-container>
+
+    <v-container v-if="!loading">
       <v-row v-if="activeTab === 'profile'">
         <v-col cols="16" md="16" v-for="card in tabs[0].cards" :key="card.id">
           <PortfolioCard :title="card.title" :description="card.description" />
@@ -18,31 +24,39 @@
         </v-col>
       </v-row>
 
-      <v-row v-else-if="activeTab === 'contact'">
-        <v-col cols="12" md="6" v-for="card in tabs[2].cards" :key="card.id">
-          <PortfolioCard :title="card.title" :description="card.description"  />
-        </v-col>
-      </v-row>
+      <v-container v-if="activeTab === 'skills'">
+        <v-row>
+          <v-col cols="12" md="6" v-for="skill in skills" :key="skill.id">
+            <PortfolioCard :title="skill.title" :description="skill.description" />
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
   </v-container>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import PortfolioCard from '@/components/PortfolioCard.vue';
 
 type Card = {
   id: number;
   title: string;
   description: string;
-  icon?: string; // icon をオプショナルに
-  link?: string; // link をオプショナルに
+  icon?: string;
+  link?: string;
 };
 
 type Tab = {
   id: string;
   label: string;
   cards: Card[];
+};
+
+type Skill = {
+  id: number;
+  title: string;
+  description: string;
 };
 
 const tabs: Tab[] = [
@@ -54,7 +68,12 @@ const tabs: Tab[] = [
         id: 1,
         title: 'Profile',
         description:
-          '2014年4月 Webメディア会社に就職 新規メディアの構築やMySQLのバージョンアップなどに携わる。\n2016年4月頃から DevOpsの推進やGoogleContainerEngineを使ったインフラ基盤の構築・運用 自動化ツールの作成などバックエンドからインフラまで幅広く行っている。\n得意な分野はクラウドをうまく利用した開発環境の構築や便利ツール作成。',
+`2014年4月 Webメディア会社に就職 新規メディアの構築やMySQLのバージョンアップなどに携わる。
+2016年4月頃から DevOpsの推進やGoogleContainerEngineを使ったインフラ基盤の構築・運用 自動化ツールの作成などバックエンドからインフラまで幅広く行っている。
+2018年4月からはSaaSの開発に携わり、主にバックエンドの開発を担当。
+また、テックリードとして技術選定や、新卒の育成なども行っている。
+得意な分野はクラウドをうまく利用した環境の構築やプロダクトの戦略と合わせた技術選定など。`
+      ,
       },
     ],
   },
@@ -69,18 +88,52 @@ const tabs: Tab[] = [
         icon: 'mdi-post',
         link: 'https://ytacky.hatenablog.com/',
       },
+      {
+        id: 3,
+        title: 'Github',
+        description: 'https://github.com/ytakky2014',
+        icon: 'mdi-github',
+        link: 'https://github.com/ytakky2014/',
+      },
+      {
+        id: 4,
+        title: 'Qiita',
+        description: 'https://qiita.com/ytakky2014',
+        icon: 'mdi-pen',
+        link: 'https://qiita.com/ytakky2014',
+      },
+      {
+        id: 5,
+        title: 'RESUME',
+        description: 'https://www.resume.id/ytakky',
+        icon: 'mdi-file-account',
+        link: 'https://www.resume.id/ytakky',
+      }
     ],
   },
   {
-    id: 'contact',
-    label: 'Contact',
-    cards: [
-      { id: 6, title: 'Contact 1', description: 'Description of contact 1' },
-      { id: 7, title: 'Contact 2', description: 'Description of contact 2' },
-    ],
+    id: 'skills',
+    label: 'Skills',
+    cards: [],
   },
 ];
 
+const skills: Skill[] = [
+  { id: 1, title: 'Language', description: 'PHP, Golang, Python, Ruby, Shell Script, JavaScript' },
+  { id: 2, title: 'Framework', description: 'Laravel, CodeIgniter, ExpressJs' },
+  { id: 3, title: 'InfraStructure', description: 'Kubernetes, Docker, Chef, Ansible, GCP, AWS' },
+  { id: 4, title: 'CI/CD', description: 'Wercker, Jenkins, Container Builder, CodeDeploy' },
+  { id: 5, title: 'Editor', description: 'Visual Studio Code, Sublime Text3, IntelliJ IDEA, Vim' },
+  { id: 6, title: 'Others', description: 'Fluentd, Raspberry Pi, IRKit' },
+];
+
 const activeTab = ref('profile');
+const loading = ref(true);
+
+onMounted(() => {
+  setTimeout(() => {
+    loading.value = false;
+  }, 1000); // 1秒後にローディングを終了
+});
 </script>
 
