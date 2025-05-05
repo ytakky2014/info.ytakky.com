@@ -1,11 +1,9 @@
 <template>
   <v-card class="portfolio-card" elevation="3">
-    <v-img :src="image" alt="Project image" class="card-image" />
+    <v-img v-if="image" :src="image" alt="Project image" class="card-image" />
     <v-card-title>{{ title }}</v-card-title>
-    <v-card-text>{{ description }}</v-card-text>
-    <v-card-actions>
-      <v-btn color="primary" class="learn-more-btn" outlined>Learn More</v-btn>
-    </v-card-actions>
+    <v-card-text class="text-pre-wrap">{{ description }}</v-card-text>
+    <v-icon v-if="icon" class="card-icon">{{ icon }}</v-icon>
   </v-card>
 </template>
 
@@ -16,6 +14,7 @@ defineProps({
   title: String,
   description: String,
   image: String,
+  icon: String,
 });
 </script>
 
@@ -38,5 +37,11 @@ defineProps({
 
 .learn-more-btn {
   margin-left: auto;
+}
+
+.card-icon {
+  font-size: 24px;
+  color: #1976d2;
+  margin-top: 10px;
 }
 </style>
