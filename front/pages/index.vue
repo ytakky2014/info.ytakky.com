@@ -100,7 +100,7 @@ const tabs: Tab[] = [
         title: 'Qiita',
         description: 'https://qiita.com/ytakky2014',
         icon: 'mdi-pen',
-        link: 'https://qiita.com/ytakky2014',
+        link: 'https://qiita.com/takky',
       },
       {
         id: 5,
@@ -108,7 +108,15 @@ const tabs: Tab[] = [
         description: 'https://www.resume.id/ytakky',
         icon: 'mdi-file-account',
         link: 'https://www.resume.id/ytakky',
-      }
+      },
+      {
+        id: 6,
+        title: 'Zenn',
+        description: 'https://zenn.dev/takky',
+        icon: 'mdi-rocket',
+        link: 'https://zenn.dev/takky',
+      },
+
     ],
   },
   {
@@ -117,7 +125,7 @@ const tabs: Tab[] = [
     cards: [],
   },
 ];
-
+// skilsを正確なものに修正
 const skills: Skill[] = [
   { id: 1, title: 'Language', description: 'PHP, Golang, Python, Ruby, Shell Script, JavaScript' },
   { id: 2, title: 'Framework', description: 'Laravel, CodeIgniter, ExpressJs' },
