@@ -136,17 +136,17 @@ const skills: Skill[] = [
     id: 1,
     title: 'Language',
     details: [
-      {
-        title: 'PHP',
-        description: '使っている期間が一番長い言語。 PHP5.2-5.5の時代あたりよく書いていた。 PHP7独自の機能は使えてないので勉強し直す必要がある',
-      },
-      {
+    {
         title: 'Golang',
-        description: '簡単な自動化ツールなどはGolangで実装 期間的には半年程度 CLIアプリだけなのでWebも組んでみたい',
-      },
-      {
+        description: '主に使用している言語。開発期間は直近6年。主にSaaSのバックエンド開発に使用している',
+    },
+    {
+        title: 'PHP',
+        description: '過去利用していた言語。PHP5.2-5.5の時代あたりよく書いていた。PHP7独自の機能は使えてないので勉強し直す必要がある',
+    },
+    {
         title: 'Python',
-        description: 'データ処理や簡単なスクリプト作成に使用。期間は1年程度。',
+        description: 'データ処理や簡単なスクリプト作成に使用',
       },
     ],
   },
@@ -155,12 +155,16 @@ const skills: Skill[] = [
     title: 'Framework',
     details: [
       {
-        title: 'Laravel',
-        description: 'PHPのフレームワークで、主にAPI開発に使用。経験は2年程度。',
+        title: 'Echo',
+        description: 'Golangのフレームワーク。主にAPI開発に使用。一番利用していて手になじんでいるフレームワーク',
       },
       {
-        title: 'CodeIgniter',
-        description: '軽量なPHPフレームワークで、小規模なプロジェクトで使用。経験は1年程度。',
+        title: 'Chi',
+        description: 'Golangのフレームワーク。内部のAPI開発に利用していた。一部CodeGeneratorで生成したコードを利用していた',
+      },
+      {
+        title: 'Laravel',
+        description: 'PHPのフレームワークで、過去にAPI開発に使用。',
       },
     ],
   },
@@ -168,27 +172,21 @@ const skills: Skill[] = [
     id: 3,
     title: 'InfraStructure',
     details: [
-      {
-        title: 'Kubernetes',
-        description: 'コンテナオーケストレーションツールで、主にGCP上で使用。経験は3年程度。',
-      },
-      {
+    {
         title: 'Docker',
         description: '開発環境の構築やデプロイに使用。経験は5年程度。',
       },
-    ],
-  },
-  {
-    id: 4,
-    title: 'CI/CD',
-    details: [
       {
-        title: 'Jenkins',
-        description: 'CI/CDパイプラインの構築に使用。経験は3年程度。',
+        title: 'Kubernetes',
+        description: 'コンテナオーケストレーションツール。過去運用実績あり。直近の業務では利用していない',
       },
       {
-        title: 'Wercker',
-        description: 'クラウドベースのCIツールで、小規模プロジェクトで使用。経験は1年程度。',
+        title: 'AWS',
+        description: 'メインで使用しているクラウドサービス。ECS,RDS,Lambda,SQSなどを利用している',
+      },
+      {
+        title: 'Google Cloud Platform',
+        description: '過去に運用したことがあるクラウドサービス。GKE,Cloud Run,Cloud Functionsなどを利用していた',
       },
     ],
   },
@@ -198,7 +196,7 @@ const skills: Skill[] = [
     details: [
       {
         title: 'Visual Studio Code',
-        description: '主にフロントエンド開発で使用。',
+        description: '主に開発で使用。',
       },
       {
         title: 'Vim',
@@ -208,15 +206,33 @@ const skills: Skill[] = [
   },
   {
     id: 6,
+    title: 'AI',
+    details: [
+      {
+        title: 'Github Copilot',
+        description: 'プライベート,業務問わず利用している。',
+      },
+      {
+        title: 'Gemini',
+        description: 'プライベート,業務問わず利用している。業務で趣味の分析をしてもらったりしている。APIを利用したツールも作成',
+      },
+    ],
+  },
+  {
+    id: 6,
     title: 'Others',
     details: [
       {
         title: 'Fluentd',
-        description: 'ログ収集ツールとして使用。経験は2年程度。',
+        description: 'ログ収集ツールとして使用',
       },
       {
         title: 'Raspberry Pi',
-        description: 'IoTプロジェクトで使用。経験は1年程度。',
+        description: 'IoTで使用。',
+      },
+      {
+        title: '自作キーボード',
+        description: 'キットを利用して、いくつかはんだ付けを含めて作成',
       },
     ],
   },
@@ -228,7 +244,7 @@ const loading = ref(true);
 onMounted(() => {
   setTimeout(() => {
     loading.value = false;
-  }, 1000); // 1秒後にローディングを終了
+  }, 1000);
 });
 </script>
 
