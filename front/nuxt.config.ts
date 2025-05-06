@@ -10,4 +10,8 @@ export default defineNuxtConfig({
   build: {
     transpile: ['vuetify'],
   },
+  ssr: false, 
+  nitro: {
+    preset: 'static',
+  },
 })
