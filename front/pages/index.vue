@@ -27,7 +27,7 @@
       <v-container v-if="activeTab === 'skills'">
         <v-row>
           <v-col cols="12" md="6" v-for="skill in skills" :key="skill.id">
-            <PortfolioCard :title="skill.title" :description="skill.description" />
+            <SkillCard :title="skill.title" :details="skill.details" />
           </v-col>
         </v-row>
       </v-container>
@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import PortfolioCard from '@/components/PortfolioCard.vue';
-
+import SkillCard from '@/components/SkillCard.vue';
 type Card = {
   id: number;
   title: string;
@@ -53,10 +53,15 @@ type Tab = {
   cards: Card[];
 };
 
+type SkillDetail = {
+  title: string;
+  description: string;
+};
+
 type Skill = {
   id: number;
   title: string;
-  description: string;
+  details: SkillDetail[];
 };
 
 const tabs: Tab[] = [
@@ -125,14 +130,96 @@ const tabs: Tab[] = [
     cards: [],
   },
 ];
-// skilsを正確なものに修正
+
 const skills: Skill[] = [
-  { id: 1, title: 'Language', description: 'PHP, Golang, Python, Ruby, Shell Script, JavaScript' },
-  { id: 2, title: 'Framework', description: 'Laravel, CodeIgniter, ExpressJs' },
-  { id: 3, title: 'InfraStructure', description: 'Kubernetes, Docker, Chef, Ansible, GCP, AWS' },
-  { id: 4, title: 'CI/CD', description: 'Wercker, Jenkins, Container Builder, CodeDeploy' },
-  { id: 5, title: 'Editor', description: 'Visual Studio Code, Sublime Text3, IntelliJ IDEA, Vim' },
-  { id: 6, title: 'Others', description: 'Fluentd, Raspberry Pi, IRKit' },
+  {
+    id: 1,
+    title: 'Language',
+    details: [
+      {
+        title: 'PHP',
+        description: '使っている期間が一番長い言語。 PHP5.2-5.5の時代あたりよく書いていた。 PHP7独自の機能は使えてないので勉強し直す必要がある',
+      },
+      {
+        title: 'Golang',
+        description: '簡単な自動化ツールなどはGolangで実装 期間的には半年程度 CLIアプリだけなのでWebも組んでみたい',
+      },
+      {
+        title: 'Python',
+        description: 'データ処理や簡単なスクリプト作成に使用。期間は1年程度。',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Framework',
+    details: [
+      {
+        title: 'Laravel',
+        description: 'PHPのフレームワークで、主にAPI開発に使用。経験は2年程度。',
+      },
+      {
+        title: 'CodeIgniter',
+        description: '軽量なPHPフレームワークで、小規模なプロジェクトで使用。経験は1年程度。',
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'InfraStructure',
+    details: [
+      {
+        title: 'Kubernetes',
+        description: 'コンテナオーケストレーションツールで、主にGCP上で使用。経験は3年程度。',
+      },
+      {
+        title: 'Docker',
+        description: '開発環境の構築やデプロイに使用。経験は5年程度。',
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: 'CI/CD',
+    details: [
+      {
+        title: 'Jenkins',
+        description: 'CI/CDパイプラインの構築に使用。経験は3年程度。',
+      },
+      {
+        title: 'Wercker',
+        description: 'クラウドベースのCIツールで、小規模プロジェクトで使用。経験は1年程度。',
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Editor',
+    details: [
+      {
+        title: 'Visual Studio Code',
+        description: '主にフロントエンド開発で使用。',
+      },
+      {
+        title: 'Vim',
+        description: 'サーバー上での簡単な編集に使用。',
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Others',
+    details: [
+      {
+        title: 'Fluentd',
+        description: 'ログ収集ツールとして使用。経験は2年程度。',
+      },
+      {
+        title: 'Raspberry Pi',
+        description: 'IoTプロジェクトで使用。経験は1年程度。',
+      },
+    ],
+  },
 ];
 
 const activeTab = ref('profile');
@@ -144,4 +231,10 @@ onMounted(() => {
   }, 1000); // 1秒後にローディングを終了
 });
 </script>
+
+<style scoped>
+.skill-card {
+  margin-bottom: 1rem;
+}
+</style>
 
