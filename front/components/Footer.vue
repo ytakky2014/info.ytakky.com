@@ -1,6 +1,6 @@
 <template>
   <v-footer app color="primary" dark>
-    <v-col class="text-center">© 2025 My Portfolio</v-col>
+    <v-col class="text-center">© 2025 ytakky</v-col>
      <v-icon class="github-icon" @click="openGithub">mdi-github</v-icon>
   </v-footer>
 </template>
